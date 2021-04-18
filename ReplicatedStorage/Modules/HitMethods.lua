@@ -1,12 +1,12 @@
 --!strict
 
 --[[Services]]--------------------------
-local Debris = game:GetService("Debris")
-local RS = game:GetService("RunService")
-local CS = game:GetService("CollectionService")
+local Debris: Debris = game:GetService("Debris")
+local RS: RunService = game:GetService("RunService")
+local CS: CollectionService = game:GetService("CollectionService")
 
 --[[Variables]]-------------------------
-local Debug = false
+local Debug: boolean = false
 ----------------------------------------
 
 local function Debugger(Scale: Vector3, Position: Vector3, Type: string): Part
@@ -42,9 +42,9 @@ local function RayDebugger(Scale: number, Position1: Vector3, Position2: Vector3
 	return DebugPart
 end
 
-local function yield(n)
+local function yield(n: number)
 	n = n or 0
-	local Delta = 0
+	local Delta: number = 0
 	repeat
 		Delta = Delta + RS.Heartbeat:Wait()
 	until Delta > n
@@ -62,7 +62,7 @@ function HitMethods:StopDebugger()
 end
 
 function HitMethods.Fuzzy(Part1: Part, Part2: Part, Epsilon: number): boolean
-	local InRange = Vector3.new(0, 0, 0):FuzzyEq(Part2.Position - Part1.Position, Epsilon)
+	local InRange: boolean = Vector3.new(0, 0, 0):FuzzyEq(Part2.Position - Part1.Position, Epsilon)
 
 	if Debug then
 		local Scale: number = (Epsilon+Epsilon)
@@ -74,7 +74,7 @@ end
 
 function HitMethods.MagCast(Position: Vector3, Position2: Vector3, DesiredRadius: number): any
 
-	local MagDistance = (Position - Position2).Magnitude
+	local MagDistance: number = (Position - Position2).Magnitude
 
 	if Debug then
 		Debugger(Vector3.new(1,1,1)*(DesiredRadius*2),Position,'Ball')
@@ -115,7 +115,7 @@ function HitMethods.TouchingParts(Main: Part): {}
 	local Touched = Main.Touched:Connect(function()end)
 	local TouchingParts = Main:GetTouchingParts()
 	
-	local Humanoids = table.create(20)
+	local Humanoids: {} = {}
 	
 	if Debug then
 		Debugger(Main.Size,Main.Position,"Block")
