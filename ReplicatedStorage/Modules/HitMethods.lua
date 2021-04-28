@@ -130,5 +130,34 @@ function HitMethods.TouchingParts(Main: Part): {}
 	return Humanoids
 end
 
+function HitMethods.GetInArea(CFrameCoords: CFrame, VecSize: Vector3, Params: OverlapParams?): {}
+	
+	if Debug then
+		local DebugPart: Part = Debugger(VecSize, CFrameCoords.Position, "Block")
+		DebugPart.CFrame = CFrameCoords
+	end
+	
+	return workspace:GetPartBoundsInBox(CFrameCoords, VecSize, Params)
+end
+
+function HitMethods.GetInRadius(VecPos: Vector3, Size: number, Params: OverlapParams?): {}
+
+	if Debug then
+		Debugger(Vector3.new(1,1,1)*Size, VecPos, "Ball")
+	end
+
+	return workspace:GetPartBoundsInRadius(VecPos, Size, Params)
+end
+
+function HitMethods.GetInPart(Part: Part, Params: OverlapParams?): {}
+
+	if Debug then
+		Debugger(Part.Size, Part.Position, "Block")
+	end
+
+	return workspace:GetPartsInPart(Part, Params)
+end
+
+
 
 return HitMethods
