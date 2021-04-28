@@ -1,3 +1,8 @@
+--[[
+	Idk why this module is here, its just a portable version of the main function module i made,
+	i think i gave it to curseei.
+]]
+
 
 --[[Services]]
 local RepStore = game:GetService("ReplicatedStorage")

@@ -16,11 +16,11 @@ local Relay3: RemoteEvent = RepStore.Events.Relay3
 --[[Logic functions]]
 
 function ServiceLib:CoCreate(func: any, ...: any): any
-	return coroutine.wrap(func,...)()
+	return coroutine.wrap(func)(...)
 end 
 
 
-function ServiceLib:TweenNew(Part: Part,Info: TweenInfo ,Changes: {}, Client: any)
+function ServiceLib:TweenNew(Part: Part, Info: any, Changes: any, Client: any)
 	Relay:FireAllClients(Part,Info,Changes,Client)
 end
 

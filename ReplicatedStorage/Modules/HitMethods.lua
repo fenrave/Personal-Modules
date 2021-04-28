@@ -46,7 +46,7 @@ local function yield(n: number)
 	n = n or 0
 	local Delta: number = 0
 	repeat
-		Delta = Delta + RS.Heartbeat:Wait()
+		Delta += RS.Heartbeat:Wait()
 	until Delta > n
 end
 
@@ -72,7 +72,7 @@ function HitMethods.Fuzzy(Part1: Part, Part2: Part, Epsilon: number): boolean
 	return InRange
 end
 
-function HitMethods.MagCast(Position: Vector3, Position2: Vector3, DesiredRadius: number): any
+function HitMethods.MagCast(Position: Vector3, Position2: Vector3, DesiredRadius: number): (number | boolean)
 
 	local MagDistance: number = (Position - Position2).Magnitude
 
@@ -87,7 +87,7 @@ function HitMethods.MagCast(Position: Vector3, Position2: Vector3, DesiredRadius
 	end 
 end
 
-function HitMethods.RayCast(Origin: Vector3, Exit: Vector3, RayInfo: RaycastParams): any
+function HitMethods.RayCast(Origin: Vector3, Exit: Vector3, RayInfo: RaycastParams): (RaycastResult | Vector3)
 	local Raycheck: any = workspace:Raycast(Origin,Exit,RayInfo)
 
 	if Debug then

@@ -25,10 +25,11 @@ function Library:BurnEffect(Player,Parent,BurnAmount,Size,Time,AltColor)
 			Fire.Orientation *= math.random(-180,180)
 			Fire.Parent = workspace.temp
 		end Debris:AddItem(Fire,3)
-		
+
 		F:TweenNew(Fire,
 			FireInfo,
-			{Size = Vector3.new(0,0,0),
+			{
+				Size = Vector3.new(0,0,0),
 				Transparency = 1,
 				CFrame = Fire.CFrame * CFrame.fromAxisAngle(Fire.Position,math.rad(math.random(-180,180))),
 				Position = Fire.Position + Vector3.new(0,5,0)
@@ -39,7 +40,7 @@ function Library:BurnEffect(Player,Parent,BurnAmount,Size,Time,AltColor)
 			{Color = Color3.fromRGB(31, 31, 31)
 			}
 		)
-		
+
 		F:yield(Time or .1)
 	end
 end
@@ -49,9 +50,9 @@ function Library.LightningNew(att1,att2,segs,color)
 end
 
 function Library:Phaser(Parent,Part,Amount,Time,Color)
-	
+
 	local model = Instance.new("Model",workspace.temp)
-	
+
 	for Phase = 1, Amount or 15 do
 		local ClonedPart = Part:Clone() do
 			ClonedPart.Anchored = true
@@ -64,18 +65,18 @@ function Library:Phaser(Parent,Part,Amount,Time,Color)
 		end
 
 		F:CoCreate(function()
-			
+
 			F:PositionClient(ClonedPart,Parent)
 
 			F:TweenNew(ClonedPart,
 				{.1,Enum.EasingStyle.Elastic},
 				{Transparency = 0,
-				Size = ClonedPart.Size*1.1
+					Size = ClonedPart.Size*1.1
 				}
 			)
 
 			F:yield(.1)
-			
+
 			local ranpos = ClonedPart.Position + ClonedPart.CFrame.UpVector*15 + ClonedPart.CFrame.LookVector*-5 + Vector3.new(1,1,1)*math.random(-2,2)
 
 			F:TweenNew(ClonedPart,
@@ -98,3 +99,4 @@ end
 
 
 return Library
+
