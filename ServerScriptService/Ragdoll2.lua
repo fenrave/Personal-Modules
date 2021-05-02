@@ -125,7 +125,7 @@ local function UnRagdoll(Humanoid: any)
 
 	local HRP: Part = Humanoid.Parent:FindFirstChild("HumanoidRootPart")
 
-	local CrossProduct = Vector3.new(0,1,0):Cross(HRP.CFrame.RightVector)
+	local CrossProduct: Vector3 = Vector3.new(0,1,0):Cross(HRP.CFrame.RightVector)
 	HRP.CFrame = CFrame.new(HRP.CFrame.p,HRP.CFrame.p+CrossProduct)
 end
 
